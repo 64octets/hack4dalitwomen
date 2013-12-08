@@ -2,9 +2,13 @@
 #
 # pip install BeautifulSoup
 # pip install html5lib
-
 from bs4 import BeautifulSoup
 import urllib2,re
+
+API_URL = "http://access.alchemyapi.com/calls/url/URLGetText?apikey=7099dd459ad18fb49672e969d398119e3ad519d0&outputMode=json&extractLinks=1&url=";
+
+def parse_article_text(url):
+    return urllib2.urlopen(url).read()
 
 def getLinksFromURL(theURL, linkPattern):
     req = urllib2.Request(theURL)
@@ -17,7 +21,6 @@ def getLinksFromURL(theURL, linkPattern):
         if linkhref != None and linkhref != '' and matcher.match(linkhref):
             print (linkhref)
 
-import calendar
 
 starttime = 41275
 yearToCheck = 2013
